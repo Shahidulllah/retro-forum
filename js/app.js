@@ -59,6 +59,7 @@ const appendTitle = () => {
     </div>
     `
     appendContainer.appendChild(appendCard);
+    counter();
 }
 
 
@@ -100,5 +101,13 @@ const displayLatestPosts = posts => {
         `
         LatestPostContainer.appendChild(LatestPostCard);
     })
+}
+
+const counter = () =>{
+    const counterId = document.getElementById('counter');
+const counterValue = counterId.innerText;
+const convertedCounter = parseInt(counterValue)
+const finalcounter = convertedCounter + 1;
+counterId.innerText = finalcounter;
 }
 
