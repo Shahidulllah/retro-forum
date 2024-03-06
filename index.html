@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Forum</title>
+    <title>TrendTro Forum</title>
     <!--Daisy UI and tailwind css  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,37 +26,40 @@
 
     <header>
         <!-- Navbar -->
-        <section class="mx-24 mt-10">
+        <section class="mx-7 lg:mx-24 mt-10">
             <div class="flex justify-between items-center">
                 <!-- Right side:logo -->
                 <div class="">
-                    <img src="./images/logo.png" alt="">
+                    <h1 class="text-3xl lg:text-5xl font-[1000]">TrendTro</h1>
+                    <!-- <img src="./images/logo.png" alt=""> -->
                 </div>
 
                 <!--Left side:menu -->
-                <div class="flex gap-3 items-center">
-                    <div class="tooltip" data-tip="Home">
-                        <button class="btn rounded-full px-4 border border-blue-300"><i
-                                class="fa-solid fa-house "></i></button>
-                    </div>
+                <div class="flex gap-7 items-center">
+                    <div class="hidden lg:block gap-6 items-center ">
+                        <div class="tooltip" data-tip="Home">
+                            <button class="btn rounded-full px-4 border border-blue-300"><i
+                                    class="fa-solid fa-house "></i></button>
+                        </div>
 
-                    <div class="tooltip" data-tip="Write">
-                        <button class="btn rounded-full px-4 border border-blue-300"><i
-                                class="fa-solid fa-pencil "></i></button>
-                    </div>
+                        <div class="tooltip" data-tip="Write">
+                            <button class="btn rounded-full px-4 border border-blue-300"><i
+                                    class="fa-solid fa-pencil "></i></button>
+                        </div>
 
-                    <div class="tooltip" data-tip="User">
-                        <button class="btn rounded-full px-4 border border-blue-300"><i
-                                class="fa-solid fa-user-plus "></i></button>
-                    </div>
+                        <div class="tooltip" data-tip="User">
+                            <button class="btn rounded-full px-4 border border-blue-300"><i
+                                    class="fa-solid fa-user-plus "></i></button>
+                        </div>
 
-                    <div class="tooltip" data-tip="Flag">
-                        <button class="btn rounded-full px-4 border border-blue-300"><i
-                                class="fa-solid fa-flag "></i></button>
+                        <div class="tooltip" data-tip="Flag">
+                            <button class="btn rounded-full px-4 border border-blue-300"><i
+                                    class="fa-solid fa-flag "></i></button>
+                        </div>
                     </div>
 
                     <button
-                        class="btn text-white text-xl font-bold bg-blue-400 rounded-full px-10 ml-4 hover:text-black hover:font-bold">Sign
+                        class="btn text-white lg:text-xl font-bold bg-blue-400 rounded-full lg:px-10 ml-4 hover:text-black hover:font-bold">Sign
                         In</button>
                 </div>
             </div>
@@ -64,28 +67,28 @@
     </header>
 
     <main>
-        <section class="mx-24 mt-10">
+        <section class="mx-7 lg:mx-24 mt-10">
             <!-- Banner section -->
             <div
-                class="banner-container bg-[url(./images/bgbanner.png)] bg-[#13132D] bg-cover bg-no-repeat h-[500px] rounded-2xl p-24 flex flex-col justify-center">
+                class="banner-container bg-[url(./images/bgbanner.png)] bg-[#13132D] bg-cover bg-no-repeat lg:h-[600px] rounded-2xl p-24 flex flex-col justify-center items-center lg:items-stretch">
                 <div class="banner-content flex justify-between items-center">
                     <!-- content:left -->
                     <div class="text text-white space-y-7">
-                        <h1 class="text-7xl font-extrabold">Welcome to the <br> <span
-                                class="text-[#797DFC]">ReTro</span> Forum</h1>
+                        <h1 class="text-4xl lg:text-7xl font-extrabold">Welcome to the <br> <span
+                                class="text-[#797DFC]">TrendTro</span> Forum</h1>
 
                         <p class="font-bold text-gray-300">Share your favourite opinion and win <br> forum coffee mug!
                         </p>
                         <!-- input text -->
                         <label class="input input-bordered flex items-center gap-2">
-                            <input type="text" class="grow text-black" placeholder="Search" />
-                            <button
+                            <input id="input-value" type="text" class="grow text-black" placeholder="Search" />
+                            <button onclick="search()"
                                 class=" badge badge-info py-5 hover:bg-gray-500 px-8 text-white font-bold rounded-full">Search</button>
                         </label>
                     </div>
 
                     <!-- content:right -->
-                    <div class="banner-stat bg-white rounded-2xl p-7 py-8 space-y-4">
+                    <div class="banner-stat bg-white rounded-2xl p-7 py-8 space-y-4 hidden lg:block">
                         <div class="flex justify-between gap-7 text-gray-500 font-bold text-xl">
                             <h4>Registered Users</h4>
                             <h4>01</h4>
@@ -108,53 +111,30 @@
         </section>
 
         <!-- Let's Discuss section -->
-        <section class="mx-24 mt-20">
+        <section class="mx-7 lg:mx-24 mt-20">
             <div class="heading text-center">
-                <h1 class="text-4xl text-black font-extrabold">Let's Discuss</h1>
+                <h1 class="text-3xl lg:text-4xl text-black font-extrabold">Let's Discuss</h1>
                 <p class="py-6 text-gray-400"> Yes, you can run unit tests and view the results directly within the app.
                     The <br> integrated testing features allow for a streamlined .</p>
             </div>
+            <!-- Loading spiner -->
+            <div id="loading-spinner" class="text-center my-3 hidden">
+                <span class="loading loading-spinner loading-lg"></span>
+            </div>
             <!-- Discuss container -->
-            <div class="discuss-container flex gap-7">
+            <div class="discuss-container lg:flex gap-8">
 
                 <!-- Discuss:left -->
-                <div id="post-container" class="w-8/12">
-                    <!-- <div class="left-container flex gap-7 bg-[#797DFC1A] p-8 rounded-2xl mb-4">
-                        <div class="indicator">
-                            <span class="indicator-item badge bg-green-600"></span>
-                            <div class="profile w-16">
-                                <img class="w-full rounded-2xl" src="./images/400px.jpg" alt="">
-                                <span class="bg-red-500 w-5"></span>
-                            </div>
-                        </div>
+                <div id="post-container" class="lg:w-8/12">
 
-                        <div class="category space-y-4 ">
-                            <p class="text-sm font-bold text-gray-600"><span># Music</span> <span class="ml-8">Author: <span>Awlad Hossain</span></span></p>
-                            <h3 class="text-xl font-extrabold">10 kids Unware of their Halloween Constume</h3>
-                            <p class="text-gray-400 ">It’s one thing to subject yourself to ha Halloween costume mishap
-                                because, hey that’s your prerogative</p>
-                            <div class="border-b-2 border-dashed"></div>
-                            <div class="command flex justify-between">
-                                <div class="flex gap-4">
-                                    <p class="space-x-2"><i class="fa-solid fa-comment"></i><span> 560</span></p>
-                                <p class="space-x-2"><i class="fa-solid fa-eye"></i><span> 1568</span></p>
-                                <p class="space-x-2"><i class="fa-solid fa-clock"></i><span> 5</span></p>
-                                </div>
-                               
-                                <div>
-                                    <button class=" bg-green-600 w-8 h-8 text-center rounded-full hover:bg-green-500"><i
-                                        class="fa-solid fa-envelope-open"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  -->
                 </div>
                 <!-- Discusse:right -->
-                <div class="w-4/12">
+                <div class="lg:w-4/12">
                     <div id="appneable-card-container" class="right-container bg-[#797DFC1A] p-8 rounded-2xl">
                         <div class="title flex justify-between mb-5">
                             <p class="text-xl font-bold">Title</p>
-                            <p><i class="fa-solid fa-check-double text-green-600"></i> Mark as read (<span id="counter">0</span>)</p>
+                            <p><i class="fa-solid fa-check-double text-green-600"></i> Mark as read (<span
+                                    id="counter">0</span>)</p>
                         </div>
 
                     </div>
@@ -163,35 +143,35 @@
         </section>
 
         <!-- Join Forum section -->
-        <section class="mx-24 mt-10">
-            <div class="h-[500px] bg-[#12132D] rounded-2xl ">
-                <div class=" flex items-center justify-between p-20">
+        <section class="mx-7 lg:mx-24 mt-10">
+            <div class="lg:h-[500px] bg-[#12132D] rounded-2xl ">
+                <div class=" flex items-center justify-between p-7 lg:p-20">
                     <div>
-                        <h1 class="text-4xl text-white font-extrabold">Join Our Forum</h1>
+                        <h1 class="text-3xl lg:text-4xl text-white font-extrabold">Join Our Forum</h1>
                         <p class="py-6 text-gray-400">Share your favorite opinion and win and wp forum coffee mug! Yes,
                             you can <br> run unit tests and view the results directly within the app.</p>
-                        <button class="btn bg-[#797DFC] font-bold text-white text-xl hover:text-blue-500 ">Registerd
+                        <button class="btn rounded-full bg-[#797DFC] font-bold text-white text-xl hover:text-blue-500 ">Registerd
                             Now</button>
                     </div>
-                    <img src="./images/joinforum.png" />
+                    <img class="hidden lg:block" src="./images/joinforum.png" />
 
                 </div>
             </div>
         </section>
 
         <!-- Latest post section -->
-        <section class="mx-24 mt-20">
+        <section class="mx-7 lg:mx-24 mt-20">
             <div>
                 <div class="heading text-center">
-                    <h1 class="text-4xl text-black font-extrabold">Latest Posts</h1>
+                    <h1 class="text-3xl lg:text-4xl text-black font-extrabold">Latest Posts</h1>
                     <p class="py-6 text-gray-400"> Yes, you can run unit tests and view the results directly within the
                         app.
                         <br> The
                         integrated testing features allow for a streamlined .
                     </p>
                 </div>
-               <div id="latest-card-container" class="grid grid-cols-3 gap-7">
-                <!-- <div class="card w-96 bg-base-100 shadow-xl border border-gray-300">
+                <div id="latest-card-container" class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+                    <!-- <div class="card w-96 bg-base-100 shadow-xl border border-gray-300">
                     <figure class="px-10 pt-10">
                         <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
                             class="rounded-xl" />
@@ -212,7 +192,7 @@
                         </div>
                     </div>
                 </div> -->
-               </div>
+                </div>
             </div>
         </section>
     </main>
@@ -220,7 +200,7 @@
     <!-- Footer section -->
     <footer>
         <section class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-24 pt-20 pb-20">
-            <h1 class="text-4xl text-black font-extrabold">ReTro</h1>
+            <h1 class="text-4xl text-black font-extrabold">TrendTro</h1>
             <p class=" text-gray-400">Share your favorite opinion and win and wp forum coffee mug! Yes,
                 you can <br> run unit tests and view the results directly within the app.</p>
 

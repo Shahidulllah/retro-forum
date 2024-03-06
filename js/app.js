@@ -3,12 +3,12 @@ const loadPosts = async () => {
     const data = await res.json();
     const posts = data.posts;
     displayPosts(posts);
-    console.log(posts);
 }
 
 // display function
 const displayPosts = posts => {
     const postContainer = document.getElementById('post-container');
+    postContainer.textContent = '';
     posts.forEach(post => {
         const postCard = document.createElement('div')
         postCard.innerHTML = `
@@ -43,10 +43,11 @@ const displayPosts = posts => {
         `
         postContainer.appendChild(postCard);
     });
+    loadingSpinner(false);
 }
 
 // function calling
-loadPosts()
+
 
 // click handler
 const appendTitle = () => {
@@ -62,12 +63,12 @@ const appendTitle = () => {
     counter();
 }
 
-
+loadPosts()
 // Latest Data fetching
 const loadLatestPosts = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
-    const posts = data ;
+    const posts = data;
     // console.log(posts);
     displayLatestPosts(posts);
 }
@@ -79,7 +80,7 @@ const displayLatestPosts = posts => {
     posts.forEach(post => {
         const LatestPostCard = document.createElement('div')
         LatestPostCard.innerHTML = `
-        <div class="card w-96 bg-base-100 shadow-xl border border-gray-300">
+        <div class="card bg-base-100 shadow-xl border border-gray-300 h-full">
         <figure class="px-10 pt-10">
             <img src=${post.cover_image} alt="Shoes"
                 class="rounded-xl" />
@@ -103,11 +104,42 @@ const displayLatestPosts = posts => {
     })
 }
 
-const counter = () =>{
+const counter = () => {
     const counterId = document.getElementById('counter');
-const counterValue = counterId.innerText;
-const convertedCounter = parseInt(counterValue)
-const finalcounter = convertedCounter + 1;
-counterId.innerText = finalcounter;
+    const counterValue = counterId.innerText;
+    const convertedCounter = parseInt(counterValue)
+    const finalcounter = convertedCounter + 1;
+    counterId.innerText = finalcounter;
 }
 
+// handle search 
+const loadSearchPosts = async (searchCategory) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchCategory}`);
+    const data = await res.json();
+    const posts = data.posts;
+    console.log(posts);
+    displayPosts(posts);
+}
+
+const search = () => {
+    loadingSpinner(true);
+    const searchField = document.getElementById('input-value');
+    const searchValue = searchField.value;
+    searchField.value = '';
+    // console.log(searchValue)
+    loadSearchPosts(searchValue);
+
+}
+
+
+// loading spninner
+
+const loadingSpinner = (loading) => {
+    const loadSpinner = document.getElementById('loading-spinner');
+    if (loading) {
+        loadSpinner.classList.remove('hidden');
+    }
+    else {
+        loadSpinner.classList.add('hidden');
+    }
+}
