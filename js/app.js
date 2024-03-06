@@ -12,7 +12,7 @@ const displayPosts = posts => {
     posts.forEach(post => {
         const postCard = document.createElement('div')
         postCard.innerHTML = `
-        <div class="left-container flex gap-7 bg-[#797DFC1A] p-8 rounded-2xl mb-4">
+        <div class="left-container lg:flex gap-7 bg-[#797DFC1A] p-8 rounded-2xl mb-4">
         <div class="indicator">
             <span class="indicator-item badge bg-green-600"></span>
             <div class="profile w-16">
@@ -54,8 +54,8 @@ const appendTitle = () => {
     const appendContainer = document.getElementById('appneable-card-container');
     const appendCard = document.createElement('div');
     appendCard.innerHTML = `
-    <div class="appendable-card flex justify-between items-center bg-white px-7 py-3 rounded-2xl mb-3">
-        <p class="w-9/12 font-bold">10 Kids Unaware of Their Costume</p>
+    <div class="appendable-card flex justify-between items-center bg-white px-2 lg:px-7 py-3 rounded-2xl mb-3">
+        <p class="lg:w-9/12 font-bold">10 Kids Unaware of Their Costume</p>
         <p class="space-x-2"><i class="fa-solid fa-eye w-auto"></i><span> 1568</span></p>
     </div>
     `
